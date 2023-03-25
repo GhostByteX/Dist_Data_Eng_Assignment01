@@ -6,8 +6,10 @@ import pymongo
 import pandas as pd
 
 # Establish connection to MongoDB
-client = MongoClient("mongodb://localhost:27017/")
-db = client["social_network"]
+client = MongoClient("mongodb+srv://usmanmalik740:Usmanmalik8058@cluster0.uu0bwxt.mongodb.net/?retryWrites=true&w=majority")
+# db = client.test
+
+db = client.social_network
 
 # All posts of a user
 def get_user_posts(user_id):
@@ -87,11 +89,11 @@ def execute_queries():
             result = get_user_posts(user_id)
             print(result)
             print("TOTAL RESULTS FOUND:  \n",len(result))
-            
-            df = pd.DataFrame(result)
-            df = df.drop(df.columns[0],axis=1)
-            df.to_csv("results\\posts_userID.csv")
-            
+            if len(result)>0:
+                df = pd.DataFrame(result)
+                df = df.drop(df.columns[0],axis=1)
+                df.to_csv("results\\posts_userID.csv")
+                
         elif choice == 2:
             
             user_id = input("Enter the user ID (e.g 'user21')\n")
@@ -100,10 +102,10 @@ def execute_queries():
             result = get_top_liked_posts(user_id, k)
             print(result)
             print("TOTAL RESULTS FOUND:  \n",len(result))
-            
-            df = pd.DataFrame(result)
-            df = df.drop(df.columns[0],axis=1)
-            df.to_csv("results\\k_liked_posts_userID.csv")
+            if len(result)>0:
+                df = pd.DataFrame(result)
+                df = df.drop(df.columns[0],axis=1)
+                df.to_csv("results\\k_liked_posts_userID.csv")
 
         elif choice == 3:
             
@@ -113,10 +115,10 @@ def execute_queries():
             result = get_top_commented_posts(user_id, k)
             print(result)
             print("TOTAL RESULTS FOUND:  \n",len(result))
-            
-            df = pd.DataFrame(result)
-            df = df.drop(df.columns[0],axis=1)
-            df.to_csv("results\\k_commented_posts_userID.csv")
+            if len(result)>0:
+                df = pd.DataFrame(result)
+                df = df.drop(df.columns[0],axis=1)
+                df.to_csv("results\\k_commented_posts_userID.csv")
 
         elif choice == 4:
             
@@ -125,10 +127,10 @@ def execute_queries():
             result = get_user_comments(user_id)
             print(result)
             print("TOTAL RESULTS FOUND:  \n",len(result))
-            
-            df = pd.DataFrame(result)
-            df = df.drop(df.columns[0],axis=1)
-            df.to_csv("results\\all_comments_user.csv")
+            if len(result)>0:
+                df = pd.DataFrame(result)
+                df = df.drop(df.columns[0],axis=1)
+                df.to_csv("results\\all_comments_user.csv")
 
 
         elif choice == 5:
@@ -138,11 +140,11 @@ def execute_queries():
             result = get_posts_by_topic(topic)
             print(result)
             print("TOTAL RESULTS FOUND:  \n",len(result))
-            
-            df = pd.DataFrame(result)
-            df = df.drop(df.columns[0],axis=1)
-            df.to_csv("results\\all_posts_topic.csv")
-            
+            if len(result)>0:
+                df = pd.DataFrame(result)
+                df = df.drop(df.columns[0],axis=1)
+                df.to_csv("results\\all_posts_topic.csv")
+                
         elif choice == 6:
             
             k = int(input("Enter the value of k\n"))
@@ -150,11 +152,11 @@ def execute_queries():
             result = get_top_topics(k)
             print(result)
             print("TOTAL RESULTS FOUND:  \n",len(result))
+            if len(result)>0:
+                df = pd.DataFrame(result)
+                df = df.drop(df.columns[0],axis=1)
+                df.to_csv("results\\k_popular_topics.csv")
             
-            df = pd.DataFrame(result)
-            df = df.drop(df.columns[0],axis=1)
-            df.to_csv("results\\k_popular_topics.csv")
-           
 
         elif choice == 7:
             
@@ -163,10 +165,11 @@ def execute_queries():
             result = get_friends_posts_last_24_hours(user_id)
             print(result)
             print("TOTAL RESULTS FOUND:  \n",len(result))
-            
-            df = pd.DataFrame(result)
-            df.to_csv("results\\posts_by_friends_within_24hrs.csv")
-            
+            if len(result)>0:
+                df = pd.DataFrame(result)
+                df = df.drop(df.columns[0],axis=1)
+                df.to_csv("results\\posts_by_friends_within_24hrs.csv")
+                
         elif choice == 8:
             print("\nThank you! GoodBye\n\n")
             exit()

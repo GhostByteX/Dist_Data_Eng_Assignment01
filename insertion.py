@@ -3,21 +3,23 @@ import random
 import string
 from pymongo import MongoClient
 
-client = MongoClient('mongodb://localhost:27017/')
-db = client['social_network']
+client = MongoClient("mongodb+srv://usmanmalik740:Usmanmalik8058@cluster0.uu0bwxt.mongodb.net/?retryWrites=true&w=majority")
+# db = client.test
+
+db = client.social_network
 
 topics = topics = ["Food", "Travel", "Technology", "Art", "Fashion", "Sports", "Music", "Politics", "Health", "Education"]
 
 users = []
-for i in range(5123):
+for i in range(3123):
     user_id = "user" + str(i)
     name = ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase, k=10))
     no_of_friends = random.randint(1,30)
-    friends = random.sample(range(5123), no_of_friends)
+    friends = random.sample(range(3123), no_of_friends)
     users.append({"_id": user_id, "name": name, "friends": friends})
 
 posts = []
-for i in range(29645):
+for i in range(19645):
     user = users[i % len(users)]
     topic = topics[random.randint(0,len(topics)-1)]
 
@@ -40,7 +42,6 @@ for i in range(29645):
                 "text": f"This is a comment by {users[j]['name']} on post {i}"
             }
             post["comments"].append(comment)
-
     posts.append(post)
 
 db.users.insert_many(users)
