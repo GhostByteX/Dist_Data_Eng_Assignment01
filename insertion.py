@@ -3,12 +3,13 @@ import random
 import string
 from pymongo import MongoClient
 
-client = MongoClient("mongodb+srv://usmanmalik740:Usmanmalik8058@cluster0.uu0bwxt.mongodb.net/?retryWrites=true&w=majority")
-# db = client.test
+client = MongoClient("mongodb+srv://usmanmalik8058:Usman123@cluster0.t4vil.mongodb.net/social_network")
 
 db = client.social_network
 
-topics = topics = ["Food", "Travel", "Technology", "Art", "Fashion", "Sports", "Music", "Politics", "Health", "Education"]
+topics = ["Food", "Travel", "Technology", "Art", "Fashion", "Sports", "Music", "Politics", "Health", "Education"]
+
+
 
 users = []
 for i in range(3123):
@@ -32,7 +33,6 @@ for i in range(19645):
         "comments": []
     }
 
-    # Randomly assign likes and comments to the post
     for j in range(len(users)//10):
         if random.random() < 0.5:
             post["likes"].append(users[j]["_id"])
@@ -43,6 +43,7 @@ for i in range(19645):
             }
             post["comments"].append(comment)
     posts.append(post)
+ 
 
 db.users.insert_many(users)
 db.posts.insert_many(posts)

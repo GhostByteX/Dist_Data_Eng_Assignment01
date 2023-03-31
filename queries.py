@@ -5,9 +5,7 @@ from pymongo import MongoClient
 import pymongo
 import pandas as pd
 
-# Establish connection to MongoDB
-client = MongoClient("mongodb+srv://usmanmalik740:Usmanmalik8058@cluster0.uu0bwxt.mongodb.net/?retryWrites=true&w=majority")
-# db = client.test
+client = MongoClient("mongodb+srv://usmanmalik8058:Usman123@cluster0.t4vil.mongodb.net/social_network")
 
 db = client.social_network
 
@@ -67,11 +65,6 @@ def get_choice ():
         choice = int(input("\n1)All posts of user\n2)Top k most liked posts of user\n3)Top k most commented posts of user\n4)All comments of user\n5)All posts on topic\n6)Top k most popular topics in terms of posts\n7)Posts of all friends of user in last 24 hours\n\n  "))
     return choice
 # Run the queries and output the results to the console
-
-
-
-
-
 
 def execute_queries():
 
