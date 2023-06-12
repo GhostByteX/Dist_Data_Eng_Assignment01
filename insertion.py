@@ -3,7 +3,7 @@ import random
 import string
 from pymongo import MongoClient
 
-client = MongoClient("mongodb+srv://usmanmalik8058:Usman123@cluster0.t4vil.mongodb.net/social_network")
+client = MongoClient("mongodb+srv://usmanmalik740:Usman740@cluster0.rpxlpvs.mongodb.net/social_network")
 
 db = client.social_network
 
@@ -18,6 +18,8 @@ for i in range(3123):
     no_of_friends = random.randint(1,30)
     friends = random.sample(range(3123), no_of_friends)
     users.append({"_id": user_id, "name": name, "friends": friends})
+
+db.users.insert_many(users)
 
 posts = []
 for i in range(19645):
@@ -45,7 +47,6 @@ for i in range(19645):
     posts.append(post)
  
 
-db.users.insert_many(users)
 db.posts.insert_many(posts)
 
 db.posts.create_index("user_id")

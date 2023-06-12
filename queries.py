@@ -5,7 +5,7 @@ from pymongo import MongoClient
 import pymongo
 import pandas as pd
 
-client = MongoClient("mongodb+srv://usmanmalik8058:Usman123@cluster0.t4vil.mongodb.net/social_network")
+client = MongoClient("mongodb+srv://usmanmalik740:Usman740@cluster0.rpxlpvs.mongodb.net/social_network")
 
 db = client.social_network
 
